@@ -1,6 +1,5 @@
 package com.runningapp.db
 
-import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
