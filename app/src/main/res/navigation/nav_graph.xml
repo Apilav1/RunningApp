@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
     app:startDestination="@id/setupFragment">
 
+    <!-- to open TrackingFragment we need to define global action-->
+    <action android:id="@+id/action_global_trackingFragment"
+        app:destination="@id/trackingFragment"
+        app:launchSingleTop="true" />
+    <!--launchSingleTop is to prevent creating a new activity when clicking on notification-->
+
     <fragment
         android:id="@+id/runFragment"
         android:name="com.runningapp.ui.fragments.RunFragment"
