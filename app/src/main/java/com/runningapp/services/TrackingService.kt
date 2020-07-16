@@ -11,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.location.Location
 import android.os.Build
+import android.os.Handler
 import android.os.Looper
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -78,9 +79,11 @@ class TrackingService : LifecycleService() {
                         isFirstRun = false
                     } else {
                         Timber.d("Resuming service...")
+                        startForegroungService()
                     }
                 }
                 ACTION_PAUSE_SERVICE -> {
+                    pauseService()
                     Timber.d("Paused service")
                 }
                 ACTION_STOP_SERVICE -> {
@@ -89,6 +92,10 @@ class TrackingService : LifecycleService() {
             }
         }
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    private fun pauseService() {
+        isTracking.postValue(false)
     }
 
     //to request location updates
@@ -141,7 +148,7 @@ class TrackingService : LifecycleService() {
     private fun addEmptyPolyline() = pathPoints.value?.apply {
         add(mutableListOf())
         pathPoints.postValue(this) //this is new values
-    } ?: pathPoints.postValue(mutableListOf()) //is the list is empty apply wont add empty list, so we have to use elvis op
+    } ?: pathPoints.postValue(mutableListOf(mutableListOf())) //is the list is empty apply wont add empty list, so we have to use elvis op
 
     private fun startForegroungService() {
 
