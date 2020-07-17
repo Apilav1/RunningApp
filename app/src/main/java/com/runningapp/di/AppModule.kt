@@ -12,7 +12,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class) //we tell dagger to install this component inside ApplicationComponent class (Base Application)
+@InstallIn(ApplicationComponent::class) //we tell dagger to install this component inside ApplicationComponent class (Base Application) and also we tell him this way how long this will live
 object AppModule {
 
     //manual to hilt on how to create running db
