@@ -2,7 +2,10 @@ package com.runningapp.ui.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.runningapp.db.Run
 import com.runningapp.repositories.MainRepository
+import kotlinx.coroutines.launch
 
 //viewModel collects data from repository and provides it for the views (fragments in this case)
 //usually we cannot create an instance of viewModel this easily and dagger cannot do this easily:
@@ -19,4 +22,7 @@ class MainViewModel @ViewModelInject constructor(
     val mainRepository: MainRepository
 ): ViewModel() {
 
+    fun insertRun(run: Run) = viewModelScope.launch {
+        mainRepository.insertRun(run)
+    }
 }
