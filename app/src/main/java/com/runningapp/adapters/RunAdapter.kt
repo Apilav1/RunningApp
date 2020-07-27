@@ -51,6 +51,8 @@ class RunAdapter : RecyclerView.Adapter<RunAdapter.RunViewHolder>() {
         return differ.currentList.size
     }
 
+    fun getRunAtPosition(position: Int) = differ.currentList[position]
+
     override fun onBindViewHolder(holder: RunViewHolder, position: Int) {
         val run = differ.currentList[position]
         holder.itemView.apply {
